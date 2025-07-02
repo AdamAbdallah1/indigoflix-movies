@@ -11,7 +11,7 @@ IndigoFlix is a modern movie finder app built with **React JS**, **Vite**, and *
 - Release year
 
 The app features:
-- 🔍 **Live search**
+- 🔍 **Live search with debounce**
 - ⚡ **Fast API fetching**
 - ✨ **Responsive design (mobile to desktop)**
 - 🎨 **Indigo, blue, black color palette**
@@ -26,6 +26,7 @@ The app features:
 - **Vite** (fast build tool)
 - **Tailwind CSS** (utility-first styling)
 - **TMDB API**
+- **Debounce** (optimizes API calls while typing)
 
 ---
 
@@ -43,7 +44,7 @@ npm run dev
 
 🌐 API
 
-This project uses TMDB API — you’ll need an API key.
+This project uses the TMDB API — you’ll need your own API key.
 📜 License
 
 MIT — free to use.
