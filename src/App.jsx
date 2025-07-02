@@ -3,6 +3,7 @@ import Search from './assets/components/Search'
 import Spinner from './assets/components/Spinner';
 import MovieCard from './assets/components/MovieCard';
 import { useDebounce } from 'react-use';
+import Footer from './assets/components/Footer';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3'
 
@@ -92,6 +93,7 @@ const App = () => {
         
 
       </div>
+      <Footer />
     </main>
   )
 }
