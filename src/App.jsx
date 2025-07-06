@@ -4,6 +4,7 @@ import Spinner from './assets/components/Spinner';
 import MovieCard from './assets/components/MovieCard';
 import { useDebounce } from 'react-use';
 import Footer from './assets/components/Footer';
+import Switch from './assets/components/Switch';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3'
 
@@ -66,11 +67,13 @@ const App = () => {
 
   return (
     <main>
+      <Switch />
       <div className='pattern' />
 
       <div className="wrapper">
         <header>
           <img src="./hero.png" alt="" />
+          
           <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the Hassle</h1>
           
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
