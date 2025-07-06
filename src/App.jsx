@@ -67,11 +67,11 @@ const App = () => {
 
   return (
     <main>
-      <Switch />
       <div className='pattern' />
 
       <div className="wrapper">
         <header>
+          <Switch />
           <img src="./hero.png" alt="" />
           
           <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the Hassle</h1>
