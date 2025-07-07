@@ -1,4 +1,4 @@
-function Genre({ setGenre }) {
+function Genre({ genre, setGenre }) {
   const mainGenres = [
     { id: null, name: 'All' },
     { id: 35, name: 'Comedy' },
