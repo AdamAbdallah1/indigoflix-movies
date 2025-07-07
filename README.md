@@ -1,52 +1,73 @@
-# IndigoFlix 🎬
+IndigoFlix 🎬✨
+Discover trending movies & series — search, filter, sort, and save your favorites.
 
-**Discover trending movies and search thousands of titles in seconds.**
+IndigoFlix is a modern movie & series finder built with React JS, Vite, and Tailwind CSS, powered by The Movie DB (TMDB) API.
+You can find detailed info at a glance:
 
-IndigoFlix is a modern movie finder app built with **React JS**, **Vite**, and **Tailwind CSS**. It fetches data from [The Movie DB (TMDB)](https://www.themoviedb.org/) API and displays movie details including:
+Movie or series poster
 
-- Movie poster
-- Title
-- Rating & stars
-- Original language
-- Release year
+Title
 
-The app features:
-- 🔍 **Live search with debounce**
-- ⚡ **Fast API fetching**
-- ✨ **Responsive design (mobile to desktop)**
-- 🎨 **Indigo, blue, black color palette**
-- 🌀 **Loading spinner**
-- 📦 **Modular React components (`useState`, `useEffect`)**
+User rating & stars
 
----
+Original language
 
-## 🚀 **Tech stack**
+Release year
 
-- **React** (with hooks: `useState`, `useEffect`)
-- **Vite** (fast build tool)
-- **Tailwind CSS** (utility-first styling)
-- **TMDB API**
-- **Debounce** (optimizes API calls while typing)
+⚡️ Features
+🔍 Live search with debounce for smooth typing
 
----
+🎬 Switch between Movies & Series
 
-## 📂 **Setup**
+🎭 Filter by genre (Action, Comedy, Romance, Crime, etc.)
 
-```bash
-# Clone the repo
+🗂️ Sort by popularity, rating, release date
+
+❤️ Add to Watchlist — save your favorite titles locally
+
+🌀 Loading spinner
+
+📱 Fully responsive design (mobile → desktop)
+
+🎨 Dark, modern UI with Tailwind CSS
+
+⚙️ Clean React components using useState, useEffect
+
+🚀 Tech stack
+React (useState, useEffect)
+
+Vite (super fast builds & dev server)
+
+Tailwind CSS (utility-first, responsive)
+
+TMDB API (movies & series data)
+
+react-use (useDebounce)
+
+⚙️ Setup
+bash
+Copy
+Edit
+# 1️⃣ Clone the repo
 git clone https://github.com/AdamAbdallah1/indigoflix-movies
 
-# Install dependencies
+# 2️⃣ Install dependencies
 npm install
 
-# Run the app locally
+# 3️⃣ Run locally
 npm run dev
+🔑 API Key
+This project uses the TMDB API — you need your own API key.
+Create a .env file:
 
-🌐 API
-
-This project uses the TMDB API — you’ll need your own API key.
+ini
+Copy
+Edit
+VITE_TMDB_API_KEY=your_api_key_here
 📜 License
+MIT — free for personal or commercial use.
 
-MIT — free to use.
+Made with ❤️ by Adam Abdallah
 
-Made with ❤️ by Adam
+👀 Demo
+https://adamabdallah1.github.io/indigoflix-movies/
