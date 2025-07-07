@@ -139,7 +139,7 @@ const App = () => {
           </h1>
           <Switch type={type} setType={setType} />
 
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search setType={setType} type={type} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
 
         <Genre setGenre={setGenre} />
