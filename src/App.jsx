@@ -20,6 +20,8 @@ const API_OPTIONS = {
 
 const App = () => {
 
+  const [type, setType] = useState('movie');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
@@ -29,40 +31,41 @@ const App = () => {
   useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm])
 
   const fetchMovies = async (query = '') => {
-    setIsLoading(true);
-    setErrorMessage('');
+  setIsLoading(true);
+  setErrorMessage('');
 
-    try{
-      const endpoint = query
-      ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-      : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+  try {
+    const endpoint = query
+      ? `${API_BASE_URL}/search/${type}?query=${encodeURIComponent(query)}`
+      : `${API_BASE_URL}/discover/${type}?sort_by=popularity.desc`;
 
-      const response = await fetch(endpoint, API_OPTIONS)
+      const response = await fetch(endpoint, API_OPTIONS);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch movies')
-      } 
+        throw new Error('Failed to fetch data');
+      }
 
-      const data = await response.json()
+      const data = await response.json();
 
-      if(!data.Response === 'False') {
-        setErrorMessage(data.Error || 'Failed to fetch movies');
+      if (!data.results) {
+        setErrorMessage('No results found.');
         setMovieList([]);
         return;
       }
-      
-      setMovieList(data.results || [])
+
+      setMovieList(data.results || []);
     } catch (error) {
-      console.log(`Error fetching movies: ${error}`)
-      setErrorMessage('Error fetching movies. Please try again later.');
+      console.log(`Error fetching ${type}:`, error);
+      setErrorMessage(`Error fetching ${type}. Please try again later.`);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
+
 
   useEffect(() => {
     fetchMovies(debounceSearchTerm); 
-  }, [debounceSearchTerm])
+  }, [debounceSearchTerm, type]);
   
 
   return (
@@ -71,7 +74,7 @@ const App = () => {
 
       <div className="wrapper">
         <header>
-          <Switch />
+          <Switch type={type} setType={setType}/>
           <img src="./hero.png" alt="" />
           
           <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the Hassle</h1>
