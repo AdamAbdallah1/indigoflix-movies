@@ -19,6 +19,28 @@ const API_OPTIONS = {
   }
 }
 
+const GENRE_NAMES = {
+  28: 'Action',
+  12: 'Adventure',
+  16: 'Animation',
+  35: 'Comedy',
+  80: 'Crime',
+  99: 'Documentary',
+  18: 'Drama',
+  10751: 'Family',
+  14: 'Fantasy',
+  36: 'History',
+  27: 'Horror',
+  10402: 'Music',
+  9648: 'Mystery',
+  10749: 'Romance',
+  878: 'Science Fiction',
+  10770: 'TV Movie',
+  53: 'Thriller',
+  10752: 'War',
+  37: 'Western',
+};
+
 const App = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,6 +50,11 @@ const App = () => {
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('');
   const [type, setType] = useState('movie');
   const [genre, setGenre] = useState(null);
+
+  const getGenreName = () => {
+    if (!genre) return '';
+    return GENRE_NAMES[genre] ? `${GENRE_NAMES[genre]}` : '';
+  };
 
   useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm])
 
@@ -93,7 +120,10 @@ const App = () => {
           <Search setType={setType} type={type} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </header>
         <section className='all-movies'>
-          <h2 className='mt-[40px]'>All {type === 'movie' ? 'Movies' : 'Series'}</h2>
+          <h2 className='mt-[40px]'>
+            All {getGenreName()}{type === 'movie' ? ' Movies' : ' Series'}
+          </h2>
+
 
           {isLoading ? (
             <Spinner />
