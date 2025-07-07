@@ -1,6 +1,6 @@
 function Switch({ type, setType }) {
   return (
-    <div className="text-gradient text-2xl flex justify-evenly p-4 mt-[-70px]">
+    <div className="text-gradient text-2xl flex justify-between p-4 mt-[-10px]">
       <button
         onClick={() => setType('movie')}
         className={`px-4 py-2 cursor-pointer ${
