@@ -77,12 +77,12 @@ const App = () => {
           <Switch type={type} setType={setType}/>
           <img src="./hero.png" alt="" />
           
-          <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the Hassle</h1>
+          <h1>Find <span className='text-gradient'>{type === 'movie' ? 'Movies' : 'Series'}</span> You'll Enjoy Without the Hassle</h1>
           
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </header>
         <section className='all-movies'>
-          <h2 className='mt-[40px]' >All Movies</h2>
+          <h2 className='mt-[40px]'>All {type === 'movie' ? 'Movies' : 'Series'}</h2>
 
           {isLoading ? (
             <Spinner />
