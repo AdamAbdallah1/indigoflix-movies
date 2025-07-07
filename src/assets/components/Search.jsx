@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Search = ({ searchTerm, setSearchTerm }) => {
+const Search = ({ setType, type, searchTerm, setSearchTerm }) => {
   return (
    <div className='search'>
     <div>
@@ -8,7 +8,7 @@ const Search = ({ searchTerm, setSearchTerm }) => {
 
       <input 
         type="text"
-        placeholder='Search through thousands of movies'
+        placeholder={`Search through thousands of ${type}'s`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
