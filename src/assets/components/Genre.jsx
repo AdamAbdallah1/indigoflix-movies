@@ -1,37 +1,58 @@
-function Genre({ genre, setGenre }) {
+function Genre({ setGenre }) {
+  const mainGenres = [
+    { id: null, name: 'All' },
+    { id: 35, name: 'Comedy' },
+    { id: 28, name: 'Action' },
+    { id: 10749, name: 'Romance' },
+  ];
+
+  const moreGenres = [
+    { id: 12, name: 'Adventure' },
+    { id: 16, name: 'Animation' },
+    { id: 80, name: 'Crime' },
+    { id: 99, name: 'Documentary' },
+    { id: 18, name: 'Drama' },
+    { id: 10751, name: 'Family' },
+    { id: 27, name: 'Horror' },
+    { id: 878, name: 'Science Fiction' },
+    { id: 53, name: 'Thriller' },
+    { id: 9648, name: 'Mystery' },
+    { id: 36, name: 'History' },
+    { id: 37, name: 'Western' },
+    { id: 10402, name: 'Music' },
+    { id: 10752, name: 'War' },
+  ];
+
   return (
-    <div className="flex flex-wrap gap-2 justify-around p-4">
-      <button onClick={() => setGenre(null)} 
-        className={`px-4 py-2 cursor-pointer text-white ${
-            genre === '' ? 'border-b-2 border-white' : ''
-        }`}
-        >
-        All
-      </button>
+    <div className="flex flex-wrap gap-4 justify-center p-4 items-center">
+      <div className="flex gap-2">
+        {mainGenres.map((g) => (
+          <button
+            key={g.name}
+            onClick={() => setGenre(g.id)}
+            className="text-white px-4 py-2 cursor-pointer"
+          >
+            {g.name}
+          </button>
+        ))}
+      </div>
 
-      <button onClick={() => setGenre(35)} 
-        className={`px-4 py-2 cursor-pointer text-white ${
-            genre === 35 ? 'border-b-2 border-white' : ''
-        }`}>
-        Comedy
-      </button>
-
-      <button onClick={() => setGenre(28)} 
-        className={`px-4 py-2 cursor-pointer text-white ${
-            genre === 28 ? 'border-b-2 border-white' : ''
-        }`}>
-        Action
-      </button>
-
-      <button onClick={() => setGenre(10749)} 
-        className={`px-4 py-2 cursor-pointer text-white ${
-            genre === 10749 ? 'border-b-2 border-white' : ''
-        }`}>
-        Romance
-      </button>
-
+      <select
+        className="text-white px-4 py-2 cursor-pointer"
+        onChange={(e) => setGenre(Number(e.target.value))}
+        defaultValue=""
+      >
+        <option value="" disabled>
+          More Genres
+        </option>
+        {moreGenres.map((g) => (
+          <option key={g.id} value={g.id}>
+            {g.name}
+          </option>
+        ))}
+      </select>
     </div>
-  )
+  );
 }
 
-export default Genre
+export default Genre;
