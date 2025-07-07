@@ -16,7 +16,7 @@ const MovieCard = ({
 
   return (
     <div className="movie-card relative">
-      {/* Favorite button */}
+      {}
       <button
         onClick={(e) => {
           e.stopPropagation();
