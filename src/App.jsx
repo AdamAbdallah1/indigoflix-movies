@@ -90,7 +90,7 @@ const App = () => {
 </h1>
           <Switch type={type} setType={setType}/>
           <Genre genre={genre} setGenre={setGenre}/>
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+          <Search setType={setType} type={type} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </header>
         <section className='all-movies'>
           <h2 className='mt-[40px]'>All {type === 'movie' ? 'Movies' : 'Series'}</h2>
