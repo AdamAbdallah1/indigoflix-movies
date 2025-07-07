@@ -41,7 +41,7 @@ const GENRE_NAMES = {
 };
 
 const App = () => {
-  const [type, setType] = useState('movie'); // 'movie' or 'tv'
+  const [type, setType] = useState('movie');
   const [searchTerm, setSearchTerm] = useState('');
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('');
   const [movieList, setMovieList] = useState([]);
@@ -111,7 +111,6 @@ const App = () => {
     }
   }, [debounceSearchTerm, type, genre, sortBy, year, showFavorites]);
 
-  // Add or remove a movie/series from favorites
   const toggleFavorite = (movie) => {
     setFavorites(prev => {
       const isFavorite = prev.some(fav => fav.id === movie.id);
@@ -190,7 +189,7 @@ const App = () => {
             ) : (
               <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {favorites
-                  .filter(fav => fav.media_type === type || (!fav.media_type && type === 'movie')) // handle TMDb sometimes missing media_type for movies
+                  .filter(fav => fav.media_type === type || (!fav.media_type && type === 'movie'))
                   .map(fav => (
                     <MovieCard
                       key={fav.id}
