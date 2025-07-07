@@ -5,6 +5,7 @@ import MovieCard from './assets/components/MovieCard';
 import { useDebounce } from 'react-use';
 import Footer from './assets/components/Footer';
 import Switch from './assets/components/Switch';
+import Genre from './assets/components/Genre';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3'
 
@@ -20,52 +21,59 @@ const API_OPTIONS = {
 
 const App = () => {
 
-  const [type, setType] = useState('movie');
-
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('');
+  const [type, setType] = useState('movie');
+  const [genre, setGenre] = useState(null);
 
   useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm])
 
   const fetchMovies = async (query = '') => {
-  setIsLoading(true);
-  setErrorMessage('');
+    setIsLoading(true)
+    setErrorMessage('')
 
-  try {
-    const endpoint = query
-      ? `${API_BASE_URL}/search/${type}?query=${encodeURIComponent(query)}`
-      : `${API_BASE_URL}/discover/${type}?sort_by=popularity.desc`;
+    try {
+      let endpoint
 
-      const response = await fetch(endpoint, API_OPTIONS);
+      if (query) {
+        endpoint = `${API_BASE_URL}/search/${type}?query=${encodeURIComponent(query)}`
+      } else {
+        endpoint = `${API_BASE_URL}/discover/${type}?sort_by=popularity.desc`
+        if (genre) {
+          endpoint += `&with_genres=${genre}`
+        }
+      }
+
+      const response = await fetch(endpoint, API_OPTIONS)
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error('Failed to fetch')
       }
 
-      const data = await response.json();
+      const data = await response.json()
 
       if (!data.results) {
-        setErrorMessage('No results found.');
-        setMovieList([]);
-        return;
+        setErrorMessage('No results found.')
+        setMovieList([])
+        return
       }
 
-      setMovieList(data.results || []);
+      setMovieList(data.results)
     } catch (error) {
-      console.log(`Error fetching ${type}:`, error);
-      setErrorMessage(`Error fetching ${type}. Please try again later.`);
+      console.log(`Error fetching ${type}:`, error)
+      setErrorMessage(`Error fetching ${type}. Please try again later.`)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
 
   useEffect(() => {
     fetchMovies(debounceSearchTerm); 
-  }, [debounceSearchTerm, type]);
+  }, [debounceSearchTerm, type, genre]);
   
 
   return (
@@ -74,11 +82,14 @@ const App = () => {
 
       <div className="wrapper">
         <header>
-          <Switch type={type} setType={setType}/>
           <img src="./hero.png" alt="" />
           
-          <h1>Find <span className='text-gradient'>{type === 'movie' ? 'Movies' : 'Series'}</span> You'll Enjoy Without the Hassle</h1>
-          
+          <h1 className="text-center">
+  Find <span className='text-gradient'>{type === 'movie' ? 'Movies' : 'Series'}</span> You'll Enjoy <br />
+  Without the Hassle
+</h1>
+          <Switch type={type} setType={setType}/>
+          <Genre setGenre={setGenre}/>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </header>
         <section className='all-movies'>
